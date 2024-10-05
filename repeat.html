@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layout Thrashing Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .content {
+            margin-top: 20px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .ad {
+            width: 100%;
+            height: 100px;
+            background-color: yellow;
+            margin-top: 10px;
+            text-align: center;
+            line-height: 100px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Layout Thrashing Example</h1>
+    <div class="content">
+        <a class="button" href="https://example.com/article" target="_blank">Click Me to Read the Article</a>
+    </div>
+
+    <!-- Simulated delay for loading the ad -->
+    <script>
+        setTimeout(function() {
+            // Insert an ad element dynamically, causing layout thrashing
+            var adElement = document.createElement('div');
+            adElement.className = 'ad';
+            adElement.innerText = 'Advertisement';
+
+            // Add click event to the ad element
+            adElement.onclick = function() {
+                alert('you clicked the ad');
+            };
+
+            // Insert the ad into the page above the button, changing its position
+            document.body.insertBefore(adElement, document.querySelector('.content'));
+        }, 2000); // Simulate ad loading after 3 seconds
+    </script>
+</body>
+</html>
