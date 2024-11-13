@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layout Thrashing Example</title>
+    <style>
+        /* Initial styles for the element */
+        #element {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: #add8e6;
+            transition: all 0.3s ease;
+        }
+
+        /* Styles for the better layout applied */
+        .theclassname {
+            left: 200px;
+            top: 200px;
+            width: 150px;
+            height: 150px;
+            background-color: #90ee90;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .button-container button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .button-container button:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Layout Thrashing Example</h2>
+    <div id="element">Element</div>
+
+    <div class="button-container">
+        <button onclick="applyBad()" style="background-color: #ff9999;">Apply Bad Layout</button>
+        <button onclick="applyBetter()" style="background-color: #99cc99;">Apply Better Layout</button>
+    </div>
+
+    <script>
+        // Bad approach: Directly setting styles in a loop, causing multiple reflows
+        function applyBad() {
+            const el = document.getElementById("element");
+            for (let i = 0; i < 20000; i++) {
+                el.style.left = (1 +  0.01 * i) + "px";
+                el.style.top = (1 +  0.01 * i) + "px";
+                el.style.width = (10 +  0.01 * i % 50) + "px";
+                el.style.height = (10 +  0.01 * i % 50) + "px";
+                el.style.backgroundColor = i % 2 === 0 ? "#ff9999" : "#ff6666";
+            }
+            console.log("Bad layout applied - multiple reflows occurred.");
+        }
+
+        // Better approach: Batch updates to reduce reflows
+        function applyBetter() {
+            const el = document.getElementById("element");
+            let left = 10;
+            let top = 10;
+            let width = 100;
+            let height = 100;
+            let color = "#ff9999";
+
+            for (let i = 0; i < 20000; i++) {
+                left = 1 + 0.01 * i;
+                top = 1 +  0.01 * i;
+                width = 10 +  0.01 * i % 50;
+                height = 10+  0.01 * i % 50;
+                color = i % 2 === 0 ? "#ff9999" : "#ff6666";
+            }
+
+            // Apply all styles at once after loop
+            el.style.left = left + "px";
+            el.style.top = top + "px";
+            el.style.width = width + "px";
+            el.style.height = height + "px";
+            el.style.backgroundColor = color;
+
+            console.log("Better layout applied - single reflow.");
+        }
+    </script>
+
+</body>
+
+</html>
