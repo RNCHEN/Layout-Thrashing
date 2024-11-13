@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layout Thrashing Effect</title>
+    <style>
+        .container {
+            width: 200px;
+            margin: 50px;
+        }
+        .link {
+            display: block;
+            padding: 10px;
+            margin: 10px 0;
+            background-color: lightblue;
+            text-align: center;
+            font-size: 16px;
+            transition: all 0.2s;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="#" class="link" id="link1">Link 1</a>
+        <a href="#" class="link" id="link2">Link 2</a>
+    </div>
+
+    <script>
+        function simulateLayoutThrashing() {
+            const link1 = document.getElementById("link1");
+            const link2 = document.getElementById("link2");
+
+            // 定义两个链接的初始高度
+            let link1Height = 20;
+            let link2Height = 20;
+
+            setInterval(() => {
+                // 随机更改第一个链接的高度，模拟布局变化
+                link1Height = link1Height === 20 ? 40 : 20;
+                link2Height = link2Height === 20 ? 40 : 20;
+
+                // 更新链接高度
+                link1.style.marginBottom = link1Height + "px";
+                link2.style.marginTop = link2Height + "px";
+            }, 200); // 每0.2秒执行一次变化，制造错位效果
+        }
+
+        // 启动布局颠簸效果
+        simulateLayoutThrashing();
+    </script>
+</body>
+</html>
