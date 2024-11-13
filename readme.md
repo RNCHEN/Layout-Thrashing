@@ -88,10 +88,11 @@ definition
 展示图片： measurement of layout thrashing
 
 2. analysis the layout code: 
-    
+    展示 html 的 inp time
 3. rdy solutions: 
     This software solution is feasible: 
-    由于浏览器的 同源策略 限制，直接通过 JavaScript 脚本访问第三方网站的 DOM 内容是不允许的
+
+    Future limitation: 由于浏览器的 同源策略 限制，直接通过 JavaScript 脚本访问第三方网站的 DOM 内容是不允许的
 
 
 4. 问问题：这个项目具体是 layout thrashing 和 reflow 还是带来的结果 
