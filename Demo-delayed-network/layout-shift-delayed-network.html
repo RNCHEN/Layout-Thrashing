@@ -21,15 +21,25 @@
         <h1>Welcome to Our Website</h1>
         <p>This is an introduction paragraph that provides some information to the user.</p>
         <img src="data:image/jpeg;base64,/9j/4AAQSD..." alt="Beautiful Landscape">
-        <p>This is some additional content that gets pushed down when the image loads.</p>
+        <p>This is some additional content that gets pushed down when the image loads. It will be pushed down and shift once the delayed image gets loaded.</p>
     </div>
 
     <script>
         const img = document.querySelector('img');
         const imgSrc = 'slow-image.jpg';
+        // Simulate a network delay before loading the image
         setTimeout(() => {
             img.src = imgSrc;
         }, 3); // Delay image loading by 0.003 seconds
     </script>    
+    
+    <!-- Explanation of the demo -->
+    <div class="content">
+        <h2>Explanation</h2>
+        <p>This demo shows how a delayed network request can cause layout shifts when an image is loaded.</p>
+        <p>In this example, the image is initially loaded with a base64 placeholder. When the actual image is loaded after a simulated network delay, it causes the content below the image to shift down.</p>
+        <p>The <code>setTimeout</code> function simulates a network delay, causing the image to load after a short delay.</p>
+        <p>This demonstrates the importance of reserving space for images to prevent layout shifts.</p>
+    </div>
 </body>
 </html>

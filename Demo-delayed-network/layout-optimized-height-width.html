@@ -19,19 +19,29 @@
 <body>
     <div class="content">
         <h1>Welcome to Our Website</h1>
-        <p>This is an introduction paragraph that provides some information to the user.</p>
+        <p>This is an introduction paragraph that provides some information to the user. It </p>
         <div class="image-placeholder">
+            <!-- Placeholder for the image to reserve space and prevent layout shift -->
             <img src="slow-image.jpg" alt="Beautiful Landscape" width="600" height="400">
         </div>
-        <p>This is some additional content that remains in place even when the image loads.</p>
+        <p>This is some additional content that remains in place even when the image loads. It will be pushed down and shift once the delayed image gets loaded.</p>
     </div>
 
     <script>
         const img = document.querySelector('img');
         const imgSrc = 'slow-image.jpg';
+        // Simulate a network delay before loading the image
         setTimeout(() => {
             img.src = imgSrc;
         }, 3); // Delay image loading by 0.003 seconds
-    </script>    
+    </script>  
+    
+    <!-- Explanation of the demo -->
+    <div class="content">
+        <h2>Explanation</h2>
+        <p>This demo shows how reserving space for an image can prevent layout shifts caused by delayed network loading.</p>
+        <p>In this example, the <code>width</code> and <code>height</code> attributes of the <code>&lt;img&gt;</code> tag are used to reserve space for the image before it loads. This prevents the content below the image from shifting when the image is loaded.</p>
+        <p>The <code>setTimeout</code> function simulates a network delay, causing the image to load after a short delay.</p>
+    </div>
 </body>
 </html>
