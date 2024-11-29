@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Animation Causing Layout Shift Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            position: relative;
+        }
+        .box {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 200px;
+            height: 160px;
+            background-color: #e74c3c;
+            animation: move 3s ease forwards;
+        }
+        @keyframes move {
+            to {
+                top: calc(90vh - 100px);
+                left: calc(90vw - 200px);
+            }
+        }
+        .content {
+            margin-top: 20px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2 style="margin-left: 20px">Black Friday Promotion!</h2>
+    </div>
+    <div class="content">
+        <h1>Welcome to Our Store</h1>
+        <p>Enjoy our latest products and offers.</p>
+        <p>Don't miss out on our exclusive deals.</p>
+    </div>
+
+    <!-- Explanation of the demo -->
+    <div class="content">
+        <h2>Explanation</h2>
+        <p>This demo shows how animations can cause layout shifts and affect performance.</p>
+        <p>In this example, the <code>.box</code> element is animated to move from the top-left corner to the bottom-right corner of the viewport. This movement causes a layout shift.</p>
+        <p>The animation triggers layout and paint steps in the browser's rendering pipeline, which are more expensive than animating properties like <code>transform</code> and <code>opacity</code> that only affect compositing.</p>
+        <p>Animating properties that affect layout or paint can lead to performance issues and a less smooth experience, as the browser has to recalculate the geometry and repaint the affected elements.</p>
+        <p>For optimal performance, it's recommended to animate properties that only affect compositing, such as <code>transform</code> and <code>opacity</code>, to achieve smoother animations and avoid layout shifts.</p>
+    </div>
+</body>
+</html>

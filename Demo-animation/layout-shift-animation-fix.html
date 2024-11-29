@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Animation Without Layout Shift Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            position: relative;
+        }
+        .promotion-box {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 200px;
+            height: 100px;
+            background-color: #e74c3c;
+            color: #fff;
+            animation: moveBox 3s ease forwards;
+        }
+        @keyframes moveBox {
+            to {
+                transform: translate(300px, 600px);
+            }
+        }
+        .content {
+            margin-top: 20px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="promotion-box">
+        <h2 style="margin-left: 20px">Black Friday Promotion!</h2>
+    </div>
+    <div class="content">
+        <h1>Welcome to Our Store</h1>
+        <p>Enjoy our latest products and offers.</p>
+        <p>Don't miss out on our exclusive deals.</p>
+    </div>
+
+    <!-- Explanation of the demo -->
+    <div class="content">
+        <h2>Explanation</h2>
+        <p>This demo shows how to fix layout shifts caused by animations by using properties that only affect compositing.</p>
+        <p>In this example, the <code>.promotion-box</code> element is animated using the <code>transform</code> property, which only affects compositing and does not trigger layout or paint steps in the browser's rendering pipeline.</p>
+        <p>The <code>@keyframes moveBox</code> animation defines the movement of the box using <code>transform: translate(300px, 600px);</code>, which ensures smooth animations without causing layout shifts.</p>
+        <p>Animating properties like <code>transform</code> and <code>opacity</code> helps achieve smoother animations and better performance, as the browser can handle these changes more efficiently.</p>
+    </div>
+</body>
+</html>
