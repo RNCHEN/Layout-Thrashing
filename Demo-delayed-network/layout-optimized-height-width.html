@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fixed Layout Shift Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .content {
+            width: 600px;
+            margin: 50px auto;
+        }
+        img {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>Welcome to Our Website</h1>
+        <p>This is an introduction paragraph that provides some information to the user.</p>
+        <div class="image-placeholder">
+            <img src="slow-image.jpg" alt="Beautiful Landscape" width="600" height="400">
+        </div>
+        <p>This is some additional content that remains in place even when the image loads.</p>
+    </div>
+
+    <script>
+        const img = document.querySelector('img');
+        const imgSrc = 'slow-image.jpg';
+        setTimeout(() => {
+            img.src = imgSrc;
+        }, 3); // Delay image loading by 0.003 seconds
+    </script>    
+</body>
+</html>
