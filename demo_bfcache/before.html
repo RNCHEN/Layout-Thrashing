@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Before Optimization</title>
+    <style>
+        /* Some styles that may cause layout shifts */
+        .content {
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .ad {
+            width: 300px;
+            height: 250px;
+            background-color: #f0f0f0;
+            margin: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Before Optimization</h1>
+    <div class="content">
+        <p>This is some content that may shift when the ad loads.</p>
+        <a href="https://www.ece.cmu.edu/">Visit ECE CMU</a>
+    </div>
+    <!-- Ad that may cause layout shift -->
+    <div class="ad" id="ad"></div>
+
+    <script>
+        // Simulate late-loading ad
+        setTimeout(() => {
+            document.getElementById('ad').innerHTML = '<img src="https://www.cmu.edu/brand/brand-guidelines/visual-identity/university-seal.html" alt="Ad">';
+        }, 2000);
+
+        // This prevents bfcache from working
+        window.addEventListener('unload', () => { });
+    </script>
+</body>
+
+</html>

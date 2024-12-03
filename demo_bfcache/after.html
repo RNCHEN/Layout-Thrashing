@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>After Optimization</title>
+    <style>
+        /* Styles to prevent layout shifts */
+        .content {
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .ad {
+            width: 300px;
+            height: 250px;
+            background-color: #f0f0f0;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>After Optimization</h1>
+    <div class="content">
+        <p>This is some content that won't shift when the ad loads.</p>
+        <a href="https://www.ece.cmu.edu/">Visit ECE CMU</a>
+    </div>
+    <!-- Reserved space for ad -->
+    <div class="ad" id="ad"></div>
+
+    <script>
+        // Simulate late-loading ad
+        setTimeout(() => {
+            document.getElementById('ad').innerHTML = '<img src="https://www.cmu.edu/brand/brand-guidelines/images/seal-4c-600x600-min.jpg" alt="Ad">';
+        }, 2000);
+
+        // Remove the unload event listener to allow bfcache to work
+    </script>
+</body>
+
+</html>
